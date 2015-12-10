@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 8</title>
+        <style>
+            .border-box {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+#calendar {
+    vertical-align: middle;
+    display:block;
+    background-color: palegreen;
+    width: 90%;
+    border:solid 10px #000;
+    border-bottom:solid 6px #000;
+    display:table;
+}
+#calendar>div.header {
+    width:100%;
+    background-color: chartreuse;
+    display:inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+#calendar>div.header>i {
+    float:left;
+    width:100px;
+    height: 40px;
+    font-size:25px;
+    font-weight:bold;
+    text-align: center;
+    cursor:pointer;
+}
+#calendar>div.header>i.fa-angle-left {
+    text-align:left;
+}
+
+#calendar>div.header>i.fa-angle-right {
+    text-align:right;
+    margin-left:40px;
+}
+
+#calendar>div.header>span {
+    width:850px;
+    font-size: 30px;
+    font-weight:bold;
+    text-transform:uppercase;
+    padding-left:40px;
+    margin-left:40px;
+    text-align:center;
+    vertical-align: middle;
+    padding-right:40px;
+    color:inherit;
+    display:table-caption;
+}
+#calendar>div.week {
+    float:left;
+    width:100%;
+    border:solid 2px #000;
+    display:table-row;
+}        
+
+#calendar>span.day {
+    float:left;
+    width:8%;
+    border:solid 2px #000;
+    font-size:2.75em;
+    text-align:center;
+    background:black;
+    cursor:pointer;
+    color:black;
+   
+}            
+.today {
+    background-color:darkgreen;
+}
+.different-month {
+    background-color:forestgreen;
+}
+.selected {
+    background: black;
+    color:white;
+}
+.day {
+    color: black;
+    font-weight:bold;
+    width: 120px;
+    padding:20px;
+    display: table-cell;
+    border-left: solid 1px #000;
+    border-right:solid 1px #000;
+    vertical-align: middle;
+}
+        </style>   
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="app.js"></script>
+        
+    </head>
+        <body ng-app="WeatherCalendar">
+        <center>
+        <div ng-controller="calendarController" id="calendar">
+            <div class="header">
+                <i class="fa fa-angle-left" ng-click="previous()"></i>
+                <span ng-bind="currMonth"></span>
+                <i class="fa fa-angle-right" ng-click="next()"></i>
+            </div>
+            <div class="week names">
+                <span class="day">Mon</span>
+                <span class="day">Tue</span>
+                <span class="day">Wed</span>
+                <span class="day">Thu</span>
+                <span class="day">Fri</span>
+                <span class="day">Sat</span>
+                <span class="day">Sun</span>
+            </div>
+            <div class="week" ng-repeat="week in weeks">
+              
+                <div ng-repeat="day in week" style="display: inline-block">
+                    <span class="day" id="day.id" ng-class="day.class" ng-bind="day.data"></span>
+                </div>     
+            </div>
+        </div>
+        </center>
+    </body>
+</html>
